@@ -17,7 +17,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction import text 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import LatentDirichletAllocation, NMF
-from sklearn.decomposition import LatentDirichletAllocation, NMF
+
+
 
 democrats = ["Pete Buttigieg", "Joe Biden", "Amy Klobuchar", "Bernie Sanders", "Elizabeth Warren", "Andrew Yang"]
 add_stop_words = ['just', 'like', 'got', 'things', 'thing', 'thats', 'know', 'said', 'going', 'dont', 'sure', 'mr', 'let', 'gon', 'na', 'say', 'want', 'year', 'time', 'end', 'way', 'talk', 'ive', 'im', 'tell', 'think', 'lot', 'mean', 'day', 'make', 'wait', 'right', 'youre', 'come', 'bring', 'theyre', 'ready', 'yeah', 'yes', 'buttigieg', 'klobuchar', 'yang', 'sander', 'warren', 'biden', 'people', 'country', 'oh', 'in', 'aa']
@@ -125,9 +126,10 @@ def run():
     data_clean_lemma.to_pickle('data_clean_lemma.pkl')
     pickle.dump(cv, open("cv.pkl", "wb"))
 
-    # Reads the data from the pickle
+     # Reads the data from the pickle
     data = pd.read_pickle('dtm.pkl')
     data = data.transpose()
+    data_clean_lemma = pd.read_pickle('data_clean_lemma.pkl')
 
     # Puts the 30 most used words in a dictionary
     top_dict = {}
@@ -137,7 +139,7 @@ def run():
 
     # Sets up the word cloud
     wc = WordCloud(stopwords=stop_words, background_color="white", colormap="Dark2",
-               max_font_size=150, random_state=42)
+                max_font_size=150, random_state=42)
     plt.rcParams['figure.figsize'] = [25 , 10]
     for index, democrat in enumerate(data.columns):
         wc.generate(data_clean_lemma.transcript[democrat])
