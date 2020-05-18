@@ -141,17 +141,28 @@ def create_scatter_plot(data_clean_lemma):
 
 # Returns the bar plot
 def unique_words_barplot(data_words, data_unique_sort, data_total_sort):
-    y_pos = np.arange(len(data_words))
-    plt.figure()
-    plt.subplot(1, 2, 1)
-    plt.barh(y_pos, data_unique_sort.unique_words, align='center')
-    plt.yticks(y_pos, data_unique_sort.politician)
-    plt.title('Number of Unique Words', fontsize=20)
-    plt.subplot(1, 2, 2)
-    plt.barh(y_pos, data_total_sort.total_words, align='center')
-    plt.yticks(y_pos, data_total_sort.politician)
-    plt.title('Number of Total words', fontsize=20)
-    plt.tight_layout()
+    # set width of bar
+    barWidth = 0.25 
+
+    # set data of bar
+    bars1 = data_unique_sort.unique_words
+    bars2 = data_total_sort.total_words
+
+    # Set position of bar on X axis
+    r1 = np.arange(len(bars1))
+    r2 = [x + barWidth for x in r1]
+    
+    # Make the plot
+    plt.bar(r1, bars1, color='#7f6d5f', width=barWidth, edgecolor='white', label='Unique Words')
+    plt.bar(r2, bars2, color='#557f2d', width=barWidth, edgecolor='white', label='Total Words')
+    
+    # Add xticks on the middle of the group bars
+    plt.xlabel('Democrats', fontweight='bold')
+    plt.xticks([r + barWidth for r in range(len(bars1))], democrats)
+    
+    # Create legend & Show graphic
+    plt.legend()
+
     return plt
 
 # Displays the topics
