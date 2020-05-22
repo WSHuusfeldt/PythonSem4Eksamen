@@ -28,5 +28,7 @@ def pickle_transcripts(urls):
         Path("transcripts").mkdir(parents=True, exist_ok=True)
         with open("transcripts/" + c + ".txt", "wb") as file:
             pickle.dump(transcripts[i], file)
-            
-pickle_transcripts(urls)
+
+
+def run():        
+    pickle_transcripts(urls)

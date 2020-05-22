@@ -32,3 +32,6 @@ Til sidst lave en Sentiment Analysis for at finde ud af, om talerne er objektive
 ## How to use
 In the jupyter notebook ‘Runner.ipynb’, there’s four blocks of code. 
 Run each of them and the program will make magic.
+
+## Udfordringer
+De største problemer var rengøring af dataen der blev webscrapet samt brugen af sklearn. Andre problemer lå i konverteringen af test.ipynb til enkelte python filer.
